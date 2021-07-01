@@ -4,7 +4,22 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "dev": "next dev"
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "lint": "eslint --ext .ts,.tsx --fix"
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "lint-staged"
+    }
+  },
+  "lint-staged": {
+    "./src/**/*.+(ts|tsx": [
+      "eslint --fix",
+      "git add"
+    ],
+    "./src/**/*.+(css|scss|js)": "prettier --write"
   },
   "keywords": [],
   "author": "",
@@ -17,6 +32,11 @@
   "devDependencies": {
     "@types/node": "^15.12.5",
     "@types/react": "^17.0.12",
+    "@typescript-eslint/eslint-plugin": "^4.28.1",
+    "@typescript-eslint/parser": "^4.28.1",
+    "eslint": "^7.29.0",
+    "husky": "^7.0.0",
+    "lint-staged": "^11.0.0",
     "typescript": "^4.3.5"
   }
 }
