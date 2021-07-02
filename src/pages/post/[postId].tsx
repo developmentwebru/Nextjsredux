@@ -12,10 +12,10 @@ import { getPost } from '../../store/actions/postAction';
 import DeletePostBtn from '../../styles/DeletePostBtn'
 import { wrapper } from '../../store';
 interface PostProps {
-    post: PostType[]
+    post: Post
 }
-interface PostType {
-    postId: any
+type Post = {
+    id: number
     title: string
     body: string
 }
