@@ -31,7 +31,7 @@ const Post: React.FC<PostProps> = ({ post }) => {
     return (
         <Wrapper>
             <Head>
-                <title>NEXT BLOG | {post.title}</title>
+                <title>NEXT BLOG |</title>
             </Head>
             <Navbar />
             <div className="container">
