@@ -1,8 +1,8 @@
 export interface PostType {
-    id: number
+    postId: any
     title: string
     body: string
-    postId: number
+
 }
 export enum PostActionTypes {
     GET_ALL_POSTS = 'GET_ALL_POSTS',

@@ -19,12 +19,14 @@ interface PostProps {
 const Post: React.FC<PostProps> = ({ post }) => {
 
     if (!post) 'Loading...'
-    const router = useRouter()
-    const deletePost = async () => {
-        await axios.delete(`https://simple-blog-api.crew.red/posts/${post.id}`)
-            .then(() => router.push('/')
-            )
-    }
+    // const router = useRouter()
+
+    // const deletePost = async () => {
+
+    //     await axios.delete(`https://simple-blog-api.crew.red/posts/${post.id}`)
+    //         .then(() => router.push('/')
+    //         )
+    // }
 
     return (
         <Wrapper>
@@ -61,7 +63,7 @@ const Post: React.FC<PostProps> = ({ post }) => {
                             height={316}
                         />
                     </PostItem>
-                    <DeletePostBtn onClick={() => { deletePost }}>Delete Post</DeletePostBtn>
+                    <DeletePostBtn onClick={() => { }}>Delete Post</DeletePostBtn>
                 </PostWrapper>
             </div>
         </Wrapper>
