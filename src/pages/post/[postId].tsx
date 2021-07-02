@@ -7,31 +7,35 @@ import { PostItem, Wrapper, BackBtn, PostWrapper, PostTitle, PostText } from '..
 import axios from 'axios'
 import { useRouter } from 'next/router'
 import { GetServerSideProps } from 'next';
-import { PostType } from '../../types/PostPreview'
+
 import { getPost } from '../../store/actions/postAction';
 import DeletePostBtn from '../../styles/DeletePostBtn'
 import { wrapper } from '../../store';
 interface PostProps {
     post: PostType[]
 }
-
+interface PostType {
+    postId: any
+    title: string
+    body: string
+}
 
 const Post: React.FC<PostProps> = ({ post }) => {
 
     if (!post) 'Loading...'
-    // const router = useRouter()
+    const router = useRouter()
 
-    // const deletePost = async () => {
+    const deletePost = async () => {
 
-    //     await axios.delete(`https://simple-blog-api.crew.red/posts/${post.id}`)
-    //         .then(() => router.push('/')
-    //         )
-    // }
+        await axios.delete(`https://simple-blog-api.crew.red/posts/${post.id}`)
+            .then(() => router.push('/')
+            )
+    }
 
     return (
         <Wrapper>
             <Head>
-                <title>NEXT BLOG |</title>
+                <title>NEXT BLOG | {post.title}</title>
             </Head>
             <Navbar />
             <div className="container">
