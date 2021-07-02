@@ -2,6 +2,7 @@ export interface PostType {
     id: number
     title: string
     body: string
+    postId: number
 }
 export enum PostActionTypes {
     GET_ALL_POSTS = 'GET_ALL_POSTS',
@@ -29,4 +30,4 @@ interface GetPostAction {
 
 
 
-export type PostsActions = GetAllPostsAction | GetPostAction | CreatePostAction;
+export type PostsActions = GetAllPostsAction | CreatePostAction | GetPostAction;
