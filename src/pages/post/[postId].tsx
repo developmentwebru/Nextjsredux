@@ -6,12 +6,13 @@ import Navbar from '../../components/Navbar'
 import { PostItem, Wrapper, BackBtn, PostWrapper, PostTitle, PostText } from '../../styles/PostElement'
 import axios from 'axios'
 import { useRouter } from 'next/router'
-import PostPreview from '../../types/PostPreview'
-
+import { GetServerSideProps } from 'next';
+import { PostType } from '../../types/PostPreview'
+import { getPost } from '../../store/actions/postAction';
 import DeletePostBtn from '../../styles/DeletePostBtn'
-
+import { wrapper } from '../../store';
 interface PostProps {
-    post: PostPreview[]
+    post: PostType[]
 }
 
 
@@ -60,7 +61,7 @@ const Post: React.FC<PostProps> = ({ post }) => {
                             height={316}
                         />
                     </PostItem>
-                    <DeletePostBtn onClick={deletePost}>Delete Post</DeletePostBtn>
+                    <DeletePostBtn onClick={() => { deletePost }}>Delete Post</DeletePostBtn>
                 </PostWrapper>
             </div>
         </Wrapper>
@@ -69,17 +70,14 @@ const Post: React.FC<PostProps> = ({ post }) => {
 
 export default Post
 
-export async function getServerSideProps(context) {
-    const res = await fetch(`https://simple-blog-api.crew.red/posts/${context.query.id}`)
-    const post = await res.json()
-
-    if (!post) {
-        return {
-            notFound: true,
-        }
+export const getServerSideProps: GetServerSideProps = wrapper.getServerSideProps(async ({ store, query }) => {
+    try {
+        const { postId } = query;
+        const { data } = await axios.get(`https://simple-blog-api.crew.red/posts/${postId}`);
+        await store.dispatch(getPost(data))
+        return { props: { post: data } }
+    } catch (error) {
+        console.log(error);
+        return { props: { error } };
     }
-
-    return {
-        props: { post }, // will be passed to the page component as props
-    }
-}
+});

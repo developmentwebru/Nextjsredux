@@ -1,39 +1,34 @@
 import React from 'react'
 import Head from 'next/head'
 import Link from 'next/link'
+import { wrapper } from '../store';
+import { GetServerSideProps } from 'next';
+import axios from 'axios';
 import Navbar from '../components/Navbar'
-import PostPreview from '../types/PostPreview'
+import { PostType } from '../types/PostPreview'
+import { getAllPosts } from '../store/actions/postAction';
 import { Wrapper, PostWrapper, Post, PostTitle, SeeMoreBtn } from '../styles/HomeElements'
 
 interface HomeProps {
-    posts: PostPreview[]
+    posts: PostType[]
     bgImage: string
-
 }
 
-
-
-
-
-
 const Home: React.FC<HomeProps> = ({ posts }) => {
-
     const [morePost, setMorePost] = React.useState(6)
-
     const showMoreBtn = () => {
         setMorePost((prevmorePost) => (
             prevmorePost + 6
         ))
     }
-
-    if (!posts) 'Loading...'
+    // if (!posts) 'Loading...'
 
     return (
+
         <div>
             <Head>
                 <title>NEXT | Blog Article</title>
             </Head>
-
             <Navbar />
             <Wrapper>
                 <div className="container">
@@ -56,22 +51,18 @@ const Home: React.FC<HomeProps> = ({ posts }) => {
                 </div>
             </Wrapper>
         </div>
+
     )
 }
+export const getServerSideProps: GetServerSideProps = wrapper.getServerSideProps( async ({ store }) => {
+    try {
+      const { data } = await axios.get('https://simple-blog-api.crew.red/posts');
+      await store.dispatch(getAllPosts(data))
+      return {props: { posts: data}}
+    } catch (error) {
+      console.log(error);
+      return {props: { error }};
+    }
+  });
 
 export default Home;
-
-export async function getServerSideProps(context) {
-    const res = await fetch(`https://simple-blog-api.crew.red/posts`)
-    const posts = await res.json()
-
-    if (!posts) {
-        return {
-            notFound: true,
-        }
-    }
-
-    return {
-        props: { posts }
-    }
-}

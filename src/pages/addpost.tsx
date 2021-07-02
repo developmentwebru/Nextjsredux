@@ -57,10 +57,6 @@ const AddPost: React.FC<AddPostProps> = () => {
                             <TextLabel>Text body:</TextLabel>
                             <TextArea onChange={e => setText(e.target.value)} />
                         </InputField>
-                        {/* <InputField>
-                            <TextLabel>URL картинки:</TextLabel>
-                            <Input />
-                        </InputField> */}
                         <FormBtn onClick={addArticle}>Add post</FormBtn>
                     </Form>
                 </FormWrapper>
