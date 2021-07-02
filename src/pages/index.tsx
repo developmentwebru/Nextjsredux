@@ -8,6 +8,7 @@ import { Wrapper, PostWrapper, Post, PostTitle, SeeMoreBtn } from '../styles/Hom
 interface HomeProps {
     posts: PostPreview[]
     bgImage: string
+
 }
 
 
@@ -41,7 +42,7 @@ const Home: React.FC<HomeProps> = ({ posts }) => {
                             posts.slice(0, morePost).map((post, idx) => {
                                 return (
                                     <Link href={'/post/[id]'} as={`/post/${post.id}`} key={idx}>
-                                        <Post bgImage={'https://via.placeholder.com/500x500/545454/FFFFFF?text=title'} alt='image' >
+                                        <Post bgImage={'https://via.placeholder.com/500x500/2772c2/FFFFFF?text=title'} >
                                             <PostTitle>
                                                 {post.title}
                                             </PostTitle>

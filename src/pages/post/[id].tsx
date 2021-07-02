@@ -54,7 +54,7 @@ const Post: React.FC<PostProps> = ({ post }) => {
                     </PostItem>
                     <PostItem>
                         <Image
-                            src='https://via.placeholder.com/500x500/545454/FFFFFF?text=%27%27'
+                            src='https://via.placeholder.com/500x500/2772c2/FFFFFF?text=title'
                             alt='Image'
                             width={540}
                             height={316}

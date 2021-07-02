@@ -12,7 +12,7 @@ export const PostWrapper = styled.div`
     column-gap:30px;
 `
 
-export const Post = styled.a`
+export const Post = styled.a<{ bgImage?: string }>`
     width: 345px;
     height: 270px;
     border-radius: 15px;
@@ -58,6 +58,7 @@ export const SeeMoreBtn = styled.a`
     line-height: 24px;
     padding: 15px;
     margin-top: 30px;
+  
     outline: none;
     :hover{
         box-shadow: 0px 0px 35px rgba(148, 174, 213, 1); 
