@@ -69,7 +69,7 @@ const Post: React.FC<PostProps> = ({ post }) => {
                             height={316}
                         />
                     </PostItem>
-                    <DeletePostBtn onClick={() => { deletePost }}>Delete Post</DeletePostBtn>
+                    <DeletePostBtn onClick={deletePost}>Delete Post</DeletePostBtn>
                 </PostWrapper>
             </div>
         </Wrapper>

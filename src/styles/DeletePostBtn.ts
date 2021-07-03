@@ -18,6 +18,12 @@ const DeletePostBtn = styled.a`
     align-items: center;
     transform: translate(-50%);
     cursor: pointer;
+    :hover{
+        background: #E23232;
+    }
+    :active{
+        background: #B61616;
+    }
 `
 
 export default DeletePostBtn
