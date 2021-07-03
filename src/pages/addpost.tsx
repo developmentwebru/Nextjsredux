@@ -3,7 +3,7 @@ import Head from 'next/head'
 import Link from 'next/link'
 import Image from 'next/image'
 import Navbar from '../components/Navbar'
-import styled from 'styled-components'
+
 import { Wrapper, BackBtn, FormWrapper, Form, InputField, Input, TextLabel, TextArea, FormBtn } from '../styles/AddPostElements'
 import axios from 'axios'
 import { useRouter } from 'next/router'

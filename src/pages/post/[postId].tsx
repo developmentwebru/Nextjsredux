@@ -7,17 +7,19 @@ import { PostItem, Wrapper, BackBtn, PostWrapper, PostTitle, PostText } from '..
 import axios from 'axios'
 import { useRouter } from 'next/router'
 import { GetServerSideProps } from 'next';
-
+import { PostType } from '../../types/PostPreview'
 import { getPost } from '../../store/actions/postAction';
 import DeletePostBtn from '../../styles/DeletePostBtn'
 import { wrapper } from '../../store';
-interface PostProps {
-    post: Post
-}
+
 type Post = {
     id: number
     title: string
     body: string
+}
+
+interface PostProps {
+    post: Post
 }
 
 const Post: React.FC<PostProps> = ({ post }) => {
@@ -67,7 +69,7 @@ const Post: React.FC<PostProps> = ({ post }) => {
                             height={316}
                         />
                     </PostItem>
-                    <DeletePostBtn onClick={() => { }}>Delete Post</DeletePostBtn>
+                    <DeletePostBtn onClick={() => { deletePost }}>Delete Post</DeletePostBtn>
                 </PostWrapper>
             </div>
         </Wrapper>

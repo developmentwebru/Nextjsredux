@@ -1,4 +1,5 @@
 export interface PostType {
+    id: number
     postId: any
     title: string
     body: string

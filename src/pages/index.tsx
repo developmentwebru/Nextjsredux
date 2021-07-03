@@ -34,9 +34,9 @@ const Home: React.FC<HomeProps> = ({ posts }) => {
                 <div className="container">
                     <PostWrapper>
                         {
-                            posts.slice(0, morePost).map((post, postId) => {
+                            posts.slice(0, morePost).map((post, idx) => {
                                 return (
-                                    <Link href={'/post/[id]'} as={`/post/${post.postId}`} key={postId}>
+                                    <Link href={'/post/[id]'} as={`/post/${post.id}`} key={idx}>
                                         <Post bgImage={'https://via.placeholder.com/500x500/2772c2/FFFFFF?text=title'} >
                                             <PostTitle>
                                                 {post.title}
@@ -54,15 +54,15 @@ const Home: React.FC<HomeProps> = ({ posts }) => {
 
     )
 }
-export const getServerSideProps: GetServerSideProps = wrapper.getServerSideProps( async ({ store }) => {
+export const getServerSideProps: GetServerSideProps = wrapper.getServerSideProps(async ({ store }) => {
     try {
-      const { data } = await axios.get('https://simple-blog-api.crew.red/posts');
-      await store.dispatch(getAllPosts(data))
-      return {props: { posts: data}}
+        const { data } = await axios.get('https://simple-blog-api.crew.red/posts');
+        await store.dispatch(getAllPosts(data))
+        return { props: { posts: data } }
     } catch (error) {
-      console.log(error);
-      return {props: { error }};
+        console.log(error);
+        return { props: { error } };
     }
-  });
+});
 
 export default Home;
